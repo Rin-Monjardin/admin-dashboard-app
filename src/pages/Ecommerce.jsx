@@ -7,6 +7,7 @@ import { earningData , SparklineAreaData , ecomPieCharData } from '../data/dummy
 import { useStateContext } from '../contexts/ContextProvider';
 
 const Ecommerce = () => {
+  const { currentColor } = useStateContext();
   return (
     <div className='mt-12'>
       <div className='flex flex-wrap lg:flex-nowrap justify-center'>
@@ -18,7 +19,7 @@ const Ecommerce = () => {
             </div>
           </div>
           <div className='mt-6 '> 
-            <Button color="white" bgColor="blue" text="Download" borderRadius="10px" size="md" />
+            <Button color="white" bgColor={currentColor} text="Download" borderRadius="10px" size="md" />
           </div>
         </div>
 
@@ -53,8 +54,35 @@ const Ecommerce = () => {
               </p>
               <p className='flex items-center gap-2 text-green-400 hover:drop-shadow-xl'>
                 <span><GoPrimitiveDot /></span>
-                <span>Expenses</span>
+                <span>Budget</span>
               </p>
+            </div>
+          </div>
+          <div className='mt-10 flex gap-10 flex-wrap justify-center'>
+            <div className='border-r-1 border-color m-4 pr-10'>
+              <div>
+                <p>
+                   <span className='text-3xl font-semibold'>$93,438</span>
+                <span className='p-1.5 hover:drop-shadow-xl cursor-pointer rounded-full text-white bg-green-400 ml-3 text-xs'>23%</span>
+                </p>
+                <p className='text-gray-500 mt-1'>Budget</p>
+              </div>
+              <div className='mt-8 '>
+                <p>
+                    <span className='text-3xl font-semibold'>$48,238</span>
+                </p>
+                <p className='text-gray-500 mt-1'>Expense</p>
+              </div>
+              
+              <div className="mt-5"> 
+                <SparkLine currentColor={currentColor} id="line-sparkline" type="Line" height="80px" width="250px" data={SparklineAreaData} color={currentColor} />
+              </div>
+              <div className='mt-10'>
+                <Button color="white" bgColor={currentColor} text="Download Report" borderRadius="10px" />
+              </div>
+            </div>
+            <div>
+              <Stacked width="320px" height="360px"  />            
             </div>
           </div>
         </div>
